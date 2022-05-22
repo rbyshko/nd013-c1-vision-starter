@@ -18,6 +18,10 @@ def get_dataset(tfrecord_path, label_map='label_map.pbtxt'):
       - dataset [tf.Dataset]: tensorflow dataset
     """
     input_config = input_reader_pb2.InputReader()
+    input_config.num_epochs = 1
+    input_config.shuffle = False
+    input_config.num_readers = 1
+    input_config.read_block_length = 1
     input_config.label_map_path = label_map
     input_config.tf_record_input_reader.input_path[:] = [tfrecord_path]
     
@@ -104,3 +108,11 @@ def bytes_list_feature(value):
 
 def float_list_feature(value):
   return tf.train.Feature(float_list=tf.train.FloatList(value=value))
+
+
+def print_tf_record(tf_record):
+  """Print tf record as read from a TFRecordDataset"""
+
+  example = tf.train.Example()
+  example.ParseFromString(tf_record.numpy())
+  print(example)

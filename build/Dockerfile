@@ -77,6 +77,12 @@ RUN python -m pip install --upgrade pip && \
 
 WORKDIR /app
 
+RUN useradd -ms $(which bash) roman
+
+RUN chown roman:roman /app
+
+USER roman
+
 COPY requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 RUN python3 -m pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
@@ -97,4 +103,5 @@ RUN git clone https://github.com/tensorflow/models.git && \
 
 # Install google cloud SDK
 RUN curl -sSL https://sdk.cloud.google.com > /tmp/gcl && bash /tmp/gcl --install-dir=~/gcloud --disable-prompts
-ENV PATH="$PATH:/root/gcloud/google-cloud-sdk/bin"
+ENV PATH="$PATH:/home/roman/gcloud/google-cloud-sdk/bin"
+
