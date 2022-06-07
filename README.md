@@ -49,7 +49,26 @@ The split itself was perfomed by the [script](create_splits.py). Great care was 
 
 ### Training
 #### Reference experiment
-This section should detail the results of the reference experiment. It should includes training metrics and a detailed explanation of the algorithm's performances.
+Here are TensorBoard plols that demonstrate training process for the reference experiment.
+
+Loss plots of the training:
+![augmentations](images/ref_exp_loss_plots.png)
+
+Orange curve is the loss on train set where as blue curve is the loss on the eval set.
+
+**Please note:** For some reason evaluation was computed twice for the first checkpoint - this is the reason why blue curve has such a shape.
+
+In general the loss curves are as expected. We see that the loss on the training set is smaller then on eval set. That is because the model performs better on the data it was optimized for.
+
+**Please note:** The training ended abruptly after 8k steps. I decided not to repeat it and continue directly with the next experiment.
+
+Here are also experiments of precision and recall.
+
+Precision:
+![augmentations](images/ref_exp_detection_precision.png)
+
+Recall:
+![augmentations](images/ref_exp_detection_recall.png)
 
 #### Improve on the reference
 To improve the results of the reference experiment we analyzed three possible augmentations:
