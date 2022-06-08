@@ -6,3 +6,5 @@ split
 
 experiments/pretrained_model
 experiments/reference
+
+experiments/with_augmentations_data

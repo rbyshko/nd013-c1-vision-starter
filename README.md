@@ -82,3 +82,35 @@ To improve the results of the reference experiment we analyzed three possible au
 We can clearly see that random nature of adjusting brightness (second column) is not optimal. Some images are made darker. Gamma adjustment makes images always brighter. Contrast adjustment does not necessarily makes images brighter but it does make them clearer. That is why for augmentation we pick: Gamma Adjustment and Random Contrast Adjustment.
 
 Please referer to [Explore augmentations Notebook](Explore%20augmentations.ipynb) for details on how the analysis was performed.
+
+The following was added to the `pipeline.config` of a reference experiment:
+```json
+  data_augmentation_options {
+    random_adjust_contrast {
+      min_delta: 1.2
+      max_delta: 1.5
+    }
+  }
+  data_augmentation_options {
+    adjust_gamma {
+      gamma: 0.7
+      gain: 1.0
+    }
+  }  
+```
+
+And here are plots from TensorBoard with training results.
+
+Loss:
+![augmentations](images/aug_exp_loss_plots.png)
+Few things to note here. There was a blip in eval (blue) curves around 2k steps. I suspect this is due to the syncronization issues between training and evaluation runs. Other than that, eval losses do show slightly worse results but they are very close to the training losses. This is big improvement comparing to the first experiment.
+
+**Please note:** The Udacity Workspace was again shutdown unexpectedly so the training could perform only 14k steps instead of planned 25k. As I did not have any GPU hours left I decided to submit results as is.
+
+Recall:
+![augmentations](images/aug_exp_detection_recall.png)
+
+Precision
+![augmentations](images/aug_exp_detection_precision.png)
+
+We again note, that recall and precision plots show a great improvement comparing with reference experiment.
