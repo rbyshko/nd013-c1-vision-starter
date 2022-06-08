@@ -102,15 +102,18 @@ The following was added to the `pipeline.config` of a reference experiment:
 And here are plots from TensorBoard with training results.
 
 Loss:
-![augmentations](images/aug_exp_loss_plots.png)
+![aug loss](images/aug_exp_loss_plots.png)
 Few things to note here. There was a blip in eval (blue) curves around 2k steps. I suspect this is due to the syncronization issues between training and evaluation runs. Other than that, eval losses do show slightly worse results but they are very close to the training losses. This is big improvement comparing to the first experiment.
 
 **Please note:** The Udacity Workspace was again shutdown unexpectedly so the training could perform only 14k steps instead of planned 25k. As I did not have any GPU hours left I decided to submit results as is.
 
 Recall:
-![augmentations](images/aug_exp_detection_recall.png)
+![aug recall](images/aug_exp_detection_recall.png)
 
 Precision
-![augmentations](images/aug_exp_detection_precision.png)
+![aug precision](images/aug_exp_detection_precision.png)
 
 We again note, that recall and precision plots show a great improvement comparing with reference experiment.
+
+Here is a example of model performance.
+![example perf](images/example_perf.png)
